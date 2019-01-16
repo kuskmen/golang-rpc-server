@@ -27,6 +27,7 @@ func NewServer(port string) {
 	<-forever
 }
 
+// Read Infinite loop where messages are read.
 func Read() {
 
 	// TODO

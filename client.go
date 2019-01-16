@@ -31,7 +31,7 @@ func NewClient(addr string) *ClientRpc {
 	return c
 }
 
-//Query  Declare Queue, will create new queue if not exist
+//Query  Declare Queue, will create new queue if it does not exist
 func (c *ClientRpc) Query(name string) {
 	// TODO
 }
