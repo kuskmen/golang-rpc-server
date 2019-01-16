@@ -11,8 +11,11 @@ Example usage (still under consideration)
 ---------------
 
 Command line interface:
+
 `create topic -name -route -retention - creates topic`
+
 `query -topicName -msgCount - reads from topic`
+
 `send -route -distribution  - sends messages with different strategy (fan out, direct)`
 
 License
