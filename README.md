@@ -10,9 +10,10 @@ Install package `go get github.com/kuskmen/golang-rpc-server`
 Example usage (still under consideration)
 ---------------
 
-`create topic -name -route -retention - creates topic
-query -topicName -msgCount - reads from topic
-send -route -distribution  - sends messages with different strategy (fan out, direct)`
+Command line interface:
+`create topic -name -route -retention - creates topic`
+`query -topicName -msgCount - reads from topic`
+`send -route -distribution  - sends messages with different strategy (fan out, direct)`
 
 License
 ---------------
