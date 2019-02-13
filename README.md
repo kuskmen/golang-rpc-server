@@ -1,4 +1,4 @@
-# golang-rpc-server
+# YAMQ is Yet Another Message Queue RPC server based project
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/kuskmen/golang-rpc-server/master/LICENSE)  [![GoDoc](https://godoc.org/github.com/kuskmen/golang-rpc-server?status.svg)](https://godoc.org/github.com/kuskmen/golang-rpc-server)
 
 Minimalistic RPC client and server implementation in Golang for one of the courses in my university
