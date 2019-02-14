@@ -1,18 +1,26 @@
-package golangrpcserver
+package yamqserver
 
 import (
 	"log"
 	"net"
 	"net/http"
+	"net/rpc"
+
+	yamq "github.com/kuskmen/yamq"
 )
 
 // NewServer creates and starts new rpc server on given port
 func NewServer(port string) {
 	forever := make(chan int)
 
-	// TODO
-	// rpc.Register(queue)
-	// rpc.HandleHTTP()
+	warehouse := new(yamq.Warehouse)
+
+	err := rpc.Register(warehouse)
+	if err != nil {
+		log.Fatal("Error registering warehouse.", err)
+	}
+
+	rpc.HandleHTTP()
 
 	listener, e := net.Listen("tcp", port)
 	log.Println("start to listen:", listener)

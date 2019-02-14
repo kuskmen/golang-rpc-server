@@ -1,25 +1,26 @@
-package golangrpcserver
+package yamq
 
 import (
-	"reflect"
 	"testing"
 )
 
-func TestNewMessageQueue(t *testing.T) {
+func TestWarehouse_NewMessageQueue(t *testing.T) {
 	type args struct {
-		name string
+		name  string
+		reply *MessageQueue
 	}
 	tests := []struct {
-		name string
-		args args
-		want *MessageQueue
+		name    string
+		w       *Warehouse
+		args    args
+		wantErr bool
 	}{
 		// TODO: Add test cases.
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			if got := NewMessageQueue(tt.args.name); !reflect.DeepEqual(got, tt.want) {
-				t.Errorf("NewMessageQueue() = %v, want %v", got, tt.want)
+			if err := tt.w.NewMessageQueue(tt.args.name, tt.args.reply); (err != nil) != tt.wantErr {
+				t.Errorf("Warehouse.NewMessageQueue() error = %v, wantErr %v", err, tt.wantErr)
 			}
 		})
 	}
@@ -28,17 +29,21 @@ func TestNewMessageQueue(t *testing.T) {
 func TestMessageQueue_Send(t *testing.T) {
 	type args struct {
 		message []byte
+		reply   *MessageQueue
 	}
 	tests := []struct {
-		name  string
-		queue *MessageQueue
-		args  args
+		name    string
+		queue   *MessageQueue
+		args    args
+		wantErr bool
 	}{
 		// TODO: Add test cases.
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			tt.queue.Send(tt.args.message)
+			if err := tt.queue.Send(tt.args.message, tt.args.reply); (err != nil) != tt.wantErr {
+				t.Errorf("MessageQueue.Send() error = %v, wantErr %v", err, tt.wantErr)
+			}
 		})
 	}
 }
@@ -46,17 +51,21 @@ func TestMessageQueue_Send(t *testing.T) {
 func TestMessageQueue_Subscribe(t *testing.T) {
 	type args struct {
 		subscriber chan []byte
+		reply      *MessageQueue
 	}
 	tests := []struct {
-		name  string
-		queue *MessageQueue
-		args  args
+		name    string
+		queue   *MessageQueue
+		args    args
+		wantErr bool
 	}{
 		// TODO: Add test cases.
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			tt.queue.Subscribe(tt.args.subscriber)
+			if err := tt.queue.Subscribe(tt.args.subscriber, tt.args.reply); (err != nil) != tt.wantErr {
+				t.Errorf("MessageQueue.Subscribe() error = %v, wantErr %v", err, tt.wantErr)
+			}
 		})
 	}
 }
@@ -64,17 +73,21 @@ func TestMessageQueue_Subscribe(t *testing.T) {
 func TestMessageQueue_Unsubscribe(t *testing.T) {
 	type args struct {
 		subscriber chan []byte
+		reply      *MessageQueue
 	}
 	tests := []struct {
-		name  string
-		queue *MessageQueue
-		args  args
+		name    string
+		queue   *MessageQueue
+		args    args
+		wantErr bool
 	}{
 		// TODO: Add test cases.
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			tt.queue.Unsubscribe(tt.args.subscriber)
+			if err := tt.queue.Unsubscribe(tt.args.subscriber, tt.args.reply); (err != nil) != tt.wantErr {
+				t.Errorf("MessageQueue.Unsubscribe() error = %v, wantErr %v", err, tt.wantErr)
+			}
 		})
 	}
 }

@@ -1,4 +1,4 @@
-package golangrpcserver
+package yamqclient
 
 import (
 	"log"
