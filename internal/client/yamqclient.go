@@ -14,16 +14,16 @@ type Client interface {
 }
 
 //ClientRpc This struct contain RPC call data structure include connection
-type ClientRpc struct {
+type YamqClient struct {
 	conn *rpc.Client
 }
 
 //NewClient Init related RPC call and dial to server by address<addr>
-func NewClient(addr string) *ClientRpc {
+func NewClient(addr string) *YamqClient {
 
 	var err error
 
-	c := new(ClientRpc)
+	c := new(YamqClient)
 	c.conn, err = rpc.DialHTTP("tcp", addr)
 	if err != nil {
 		log.Fatal("dialing:", err)
@@ -31,17 +31,29 @@ func NewClient(addr string) *ClientRpc {
 	return c
 }
 
-//Query  Declare Queue, will create new queue if it does not exist
-func (c *ClientRpc) Query(name string) {
-	// TODO
+//Query  Query Queue, will create new queue if it does not exist
+func (c *YamqClient) Query(name string) {
+	var err error
+	args := &QueryArgs{QueueName: name}
+	var reply int
+	err = c.conn.Call("WorkQueue.QueueDeclare", args, &reply)
+	if err != nil {
+		log.Fatal("rpc error:", err)
+	}
+	log.Println("WorkQueue: ", name)
 }
 
 //Publish Publish data to the Queue
-func (c *ClientRpc) Publish(name string, value []byte) {
+func (c *YamqClient) Publish(name string, value []byte) {
+	// TODO
+}
+
+//Subscribe Subscribes to a Queue
+func (c *YamqClient) Subscribe(name string) {
 	// TODO
 }
 
 //Consume Consume data from Queue until now, if there still not get any info return empty result
-func (c *ClientRpc) Consume(name string) {
+func (c *YamqClient) Consume(name string) {
 	// TODO
 }

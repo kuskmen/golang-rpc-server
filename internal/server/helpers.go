@@ -1,4 +1,4 @@
-package yamq
+package yamqserver
 
 func removeChanFromSlice(slice []chan []byte, target chan []byte) []chan []byte {
 	var retSlice []chan []byte
