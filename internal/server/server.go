@@ -1,4 +1,4 @@
-package yamqserver
+package server
 
 import (
 	"log"

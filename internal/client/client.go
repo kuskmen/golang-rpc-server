@@ -1,4 +1,4 @@
-package yamqclient
+package client
 
 import (
 	"log"
