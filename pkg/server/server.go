@@ -10,7 +10,7 @@ import (
 const maxNumberOfQueues = 65535
 
 type YamqServer struct {
-	workQueues []string
+	WorkQueues []string
 }
 
 type RegisterWorkQueueArgs struct {
@@ -18,13 +18,13 @@ type RegisterWorkQueueArgs struct {
 	Port string
 }
 
-var yamqServer = new(YamqServer)
+var Server = new(YamqServer)
 
 // NewServer creates and starts new rpc server on given port
 func NewServer(port string) {
 	forever := make(chan int)
 
-	err := rpc.Register(yamqServer)
+	err := rpc.Register(Server)
 	if err != nil {
 		log.Fatal("Error registering yamq server.", err)
 	}
@@ -43,14 +43,14 @@ func NewServer(port string) {
 	<-forever
 }
 
-func (ymServer *YamqServer) RegisterWorkQueue(args RegisterWorkQueueArgs, reply bool) error {
+func (ymServer *YamqServer) RegisterWorkQueue(args RegisterWorkQueueArgs, reply *RegisterWorkQueueArgs) error {
 
 	//err := rpc.RegisterName(args.Name, new(WorkQueue))
 	//if err != nil {
 	//return err
 	//}
 
-	ymServer.workQueues = append(ymServer.workQueues, args.Name)
+	ymServer.WorkQueues = append(ymServer.WorkQueues, args.Name)
 
 	rpc.HandleHTTP()
 
