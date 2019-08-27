@@ -1,7 +1,7 @@
 package main
 
 import (
-	yamq "github.com/kuskmen/yamq/internal/client"
+	yamq "github.com/kuskmen/yamq/pkg/client"
 )
 
 func main() {

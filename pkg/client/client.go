@@ -34,9 +34,9 @@ func NewClient(addr string) *YamqClient {
 //Query  Query Queue, will create new queue if it does not exist
 func (c *YamqClient) Query(name string) {
 	var err error
-	args := &QueryArgs{QueueName: name}
-	var reply int
-	err = c.conn.Call("WorkQueue.QueueDeclare", args, &reply)
+	//	args := &QueryArgs{QueueName: name}
+	//	var reply int
+	//	err = c.conn.Call("WorkQueue.QueueDeclare", args, &reply)
 	if err != nil {
 		log.Fatal("rpc error:", err)
 	}

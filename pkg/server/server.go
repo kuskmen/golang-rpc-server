@@ -45,10 +45,10 @@ func NewServer(port string) {
 
 func (ymServer *YamqServer) RegisterWorkQueue(args RegisterWorkQueueArgs, reply bool) error {
 
-	err := rpc.RegisterName(args.Name, new(WorkQueue))
-	if err != nil {
-		return err
-	}
+	//err := rpc.RegisterName(args.Name, new(WorkQueue))
+	//if err != nil {
+	//return err
+	//}
 
 	ymServer.workQueues = append(ymServer.workQueues, args.Name)
 
